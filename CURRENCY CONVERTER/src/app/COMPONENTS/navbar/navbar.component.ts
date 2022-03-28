@@ -13,7 +13,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
         display: flex;
         height: 100px;
         justify-content: center;
-        background-color: rgba(49, 48, 94, 1);
+        background-color: rgba(35, 35, 83, 1);
       }
       nav {
         width: 90%;

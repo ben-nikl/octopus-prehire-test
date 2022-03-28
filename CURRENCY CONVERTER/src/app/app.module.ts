@@ -10,6 +10,8 @@ import { NavbarLogoComponent } from './COMPONENTS/navbar-logo/navbar-logo.compon
 import { NavbarTitleComponent } from './COMPONENTS/navbar-title/navbar-title.component';
 import { SearchCurrencyComponent } from './COMPONENTS/search-currency/search-currency.component';
 import { CurrencyListAndDetailComponent } from './COMPONENTS/currency-list-and-detail/currency-list-and-detail.component';
+import { CurrencyListComponent } from './COMPONENTS/currency-list/currency-list.component';
+import { SortByCountryPipe } from './SERVICES/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { CurrencyListAndDetailComponent } from './COMPONENTS/currency-list-and-d
     NavbarTitleComponent,
     SearchCurrencyComponent,
     CurrencyListAndDetailComponent,
+    CurrencyListComponent,
+    SortByCountryPipe
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 
 @Component({
@@ -28,16 +29,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
     h4{
       font-weight: normal;
       position: relative;
-      top: 20px;
-      &:after {
-        content: '';
-        background: white;
-        position: absolute;
-        height: 1px;
-        width: 150%;
-        bottom: -10px;
-        left: -25px;
-      }
+      top: 15px;
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush
