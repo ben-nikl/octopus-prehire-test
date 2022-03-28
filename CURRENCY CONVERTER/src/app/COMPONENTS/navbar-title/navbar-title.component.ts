@@ -6,10 +6,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
     <h1>CURRENCY CONVERTER</h1>
   `,
   styles: [`
-   :host {
-     border-bottom: 1px solid white;
-     padding-bottom: 10px;
-   }
+   :host {}
   `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { CurrenciesService } from './SERVICES/currencies.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: "app-root",
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
      <app-navbar-logo></app-navbar-logo>
      <app-navbar-title></app-navbar-title>
    </app-navbar>
+   <app-search-currency></app-search-currency>
+   <app-currency-list-and-detail>
+     <router-outlet></router-outlet>
+   </app-currency-list-and-detail>
   `,
   styles: [
     `
@@ -24,6 +29,12 @@ import { Component } from '@angular/core';
     `,
   ],
 })
-export class AppComponent {
-  title = "currency-converter";
+export class AppComponent implements OnInit {
+  constructor(public currencyService: CurrenciesService) {}
+  ngOnInit() { 
+    this.currencyService.getCurrencies().subscribe(console.log);
+  } 
 }
+
+  
+  
