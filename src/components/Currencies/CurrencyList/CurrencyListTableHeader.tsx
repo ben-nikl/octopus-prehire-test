@@ -1,4 +1,4 @@
-const CurrencyListTableHeader = () => {
+const CurrencyListTableHeader: React.FC = () => {
 	return (
 		<thead className='table__header'>
 			<tr>

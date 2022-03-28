@@ -6,7 +6,7 @@ import Header from './components/Header/Header';
 import Content from './components/Wrappers/Content';
 import Currencies from './components/Currencies/Currencies';
 
-function App() {
+const App: React.FC = () => {
 	const { isLoading, data } = useQuery('currencyList', getCurrencyList);
 	
 	if (isLoading) {

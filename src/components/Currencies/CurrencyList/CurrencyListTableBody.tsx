@@ -6,7 +6,7 @@ type Props = {
 	handleCurrencySelect: (currencyCode: string) => void;
 }
 
-const CurrencyListTableBody = ({currencies = [], handleCurrencySelect}: Props) => {
+const CurrencyListTableBody: React.FC<Props> = ({currencies = [], handleCurrencySelect}: Props) => {
 	return (
 		<tbody className='table__body'>
 			{currencies.map(

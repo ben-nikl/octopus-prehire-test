@@ -4,7 +4,7 @@ type Props = {
 	handleCurrencySearch: (value: string) => void
 }
 
-const CurrencySearch = ({handleCurrencySearch}: Props) => {
+const CurrencySearch: React.FC<Props> = ({handleCurrencySearch}: Props) => {
 	const [searchQuery, setSearchQuery] = useState('');
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { value = '' } = e.currentTarget;

@@ -9,7 +9,7 @@ type Props = {
 	hidden: boolean
 }
 
-const CurrencyDetail = ({ currencyDetail, hidden }: Props) => {
+const CurrencyDetail: React.FC<Props> = ({ currencyDetail, hidden }: Props) => {
 	return (
 		<TableWrapper className={`currency-detail ${hidden ? 'visually-hidden' : ''}`}>
 			<table className='currency-detal__table table'>

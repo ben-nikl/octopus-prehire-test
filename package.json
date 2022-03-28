@@ -1,5 +1,5 @@
 {
-	"homepage": "https://mrdmitriev.github.io/Converter",
+	"homepage": "https://mrdmitriev.github.io/octopus-prehire-test/",
 	"name": "converter",
 	"version": "0.1.0",
 	"private": true,
@@ -16,6 +16,7 @@
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-query": "^3.34.2",
+		"react-router-dom": "^6.2.2",
 		"react-scripts": "4.0.3",
 		"recharts": "^2.1.9",
 		"sass": "^1.49.9",
@@ -25,6 +26,7 @@
 	"scripts": {
 		"predeploy": "npm run build",
 		"pre-commit": "",
+		"lint:commit": "",
 		"deploy": "gh-pages -d build",
 		"start": "react-scripts start",
 		"build": "react-scripts build",

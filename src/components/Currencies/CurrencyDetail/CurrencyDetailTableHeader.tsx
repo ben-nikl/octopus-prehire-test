@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CurrencyDetailTableHeader = () => {
+const CurrencyDetailTableHeader: React.FC = () => {
 	return (
 		<thead className='table__header'>
 			<tr>

@@ -1,6 +1,10 @@
 import React from 'react'
 
-const Content = ({children}: any) => {
+type Props = {
+	children: React.ReactNode
+}
+
+const Content: React.FC<Props> = ({children}: Props) => {
 	return (
 		<main className='content'>{children}</main>
 	)

@@ -4,15 +4,13 @@ import TableWrapper from '../../Wrappers/TableWrapper';
 import CurrencyListTableBody from './CurrencyListTableBody';
 import CurrencyListTableHeader from './CurrencyListTableHeader';
 
-// remove any type
 type Props = {
 	search: string;
 	currencies: Currency[];
 	handleCurrencySelect: (currencyCode: string) => void;
 }
-export const CurrencyList = ({currencies, search, handleCurrencySelect}: Props) => {
+export const CurrencyList: React.FC<Props> = ({currencies, handleCurrencySelect}: Props) => {
 	const sortedByCountryName = sortCurrenciesAlphaBetically(currencies, 'country');
-	// const filteredByQuery = 
 	return (
 <>
 		<TableWrapper className='currency-list'>
