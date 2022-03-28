@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/octopus-prehire-test/static/css/main.e6919c05.chunk.css",
+    "main.js": "/octopus-prehire-test/static/js/main.2bafa225.chunk.js",
+    "main.js.map": "/octopus-prehire-test/static/js/main.2bafa225.chunk.js.map",
+    "runtime-main.js": "/octopus-prehire-test/static/js/runtime-main.1f4a334b.js",
+    "runtime-main.js.map": "/octopus-prehire-test/static/js/runtime-main.1f4a334b.js.map",
+    "static/js/2.af34c362.chunk.js": "/octopus-prehire-test/static/js/2.af34c362.chunk.js",
+    "static/js/2.af34c362.chunk.js.map": "/octopus-prehire-test/static/js/2.af34c362.chunk.js.map",
+    "index.html": "/octopus-prehire-test/index.html",
+    "static/css/main.e6919c05.chunk.css.map": "/octopus-prehire-test/static/css/main.e6919c05.chunk.css.map",
+    "static/js/2.af34c362.chunk.js.LICENSE.txt": "/octopus-prehire-test/static/js/2.af34c362.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1f4a334b.js",
+    "static/js/2.af34c362.chunk.js",
+    "static/css/main.e6919c05.chunk.css",
+    "static/js/main.2bafa225.chunk.js"
+  ]
+}
