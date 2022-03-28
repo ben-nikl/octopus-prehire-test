@@ -18,7 +18,7 @@ ReactDOM.render(
 		<QueryClientProvider client={queryClient}>
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" element={<App />} />
+					<Route path="/octopus-prehire-test" element={<App />} />
 					<Route path="/currency/detail/:currency" element={<App />} />
 				</Routes>
 			</BrowserRouter>
