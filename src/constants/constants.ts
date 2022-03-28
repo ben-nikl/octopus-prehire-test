@@ -1,11 +1,18 @@
-// EXCHANGE RATES DATA
-export const AMOUNT_COLUMN = 2;
-export const CURRENCY_CODE_COLUMN = 3;
-export const CURRENCY_RATE_COLUMN = 4;
-export const DEFAULT_CURRENCY_AMOUNT = 100;
+// RATES
+export const AVERAGE_RATE_DECIMALS = 2;
 
 // WARNINGS
 export const NO_DATA_LOADED_WARNING = 'We have not got any data from the bank';
 
 // ENDPOINTS
-export const CURRENCY_LIST = `${process.env.PUBLIC_URL}/currencies.json`;
+export const CURRENCY_LIST = `${process.env.PUBLIC_URL}/data/currencies.json`;
+
+// TIME
+export const MONTHS = ["January", "February", "March", "April", "May", "June",
+	"July", "August", "September", "October", "November", "December"];
+
+export const CURRENT_CENTURY_YEARS = 2000;
+
+// ALPHABET
+export const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
+

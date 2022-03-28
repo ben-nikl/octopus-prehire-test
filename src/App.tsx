@@ -6,13 +6,8 @@ import Header from './components/Header/Header';
 import Content from './components/Wrappers/Content';
 import Currencies from './components/Currencies/Currencies';
 
-// rename components
-// add missing types
-
-
 function App() {
-	const { isLoading, isError, data, error } = useQuery('currencyList', getCurrencyList);
-	console.log('data', data);
+	const { isLoading, data } = useQuery('currencyList', getCurrencyList);
 	
 	if (isLoading) {
 		return <span>Loading...</span>
@@ -22,7 +17,7 @@ function App() {
     <AppWrapper>
 			<Header />
 			<Content>
-				<Currencies currencies={data.currencies}/>
+				{data && <Currencies currencies={data.currencies} currenciesMap={data.currenciesMap}/>}
 			</Content>
     </AppWrapper>
   );

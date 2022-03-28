@@ -23,7 +23,17 @@
   background: #d367a1;
 }
 
+.visually-hidden {
+	visibility: hidden
+}
+
+.flex-container {
+	display: flex
+}
+
 @import './container.scss';
 @import './header.scss';
 @import './content.scss';
 @import './table.scss';
+@import './currency.scss';
+@import './search.scss';
