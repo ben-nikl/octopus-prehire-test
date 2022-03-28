@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import diacritics from 'diacritics';
 
 import { getCurrencyDetail } from '../../api/currency';
@@ -18,7 +18,7 @@ type Props = {
 	currencies: Currency[],
 	currenciesMap: CurrenciesMap
 }
-const Currencies = ({currencies = [], currenciesMap = {}}: Props) => {
+const Currencies: React.FC<Props> = ({currencies = [], currenciesMap = {}}: Props) => {
 	const [search, setSearch] = useState('');
 	const [selectedCurrency, setSelectedCurrency] = useState('');
 	const [currencyDetail, setCurencyDetail] = useState({country: '', code: '', rates: [0], average: 0});
@@ -31,14 +31,22 @@ const Currencies = ({currencies = [], currenciesMap = {}}: Props) => {
 	}, [selectedCurrency, currencies]);
 
 	
-	const handleCurrencySelect = (currencyCode: string) => {
-		setSelectedCurrency(currencyCode);
-		setError(false);
-	}
+	const handleCurrencySelect = useCallback(
+		(currencyCode: string) => {
+			setSelectedCurrency(currencyCode);
+			setError(false);
+		},
+		[],
+	)
+	
 
-	const handleCurrencySearch = (query = '') => {
-		setSearch(removeDiacritics(query).toLowerCase());
-	}
+	const handleCurrencySearch = useCallback(
+		(query = '') => {
+			setSearch(removeDiacritics(query).toLowerCase());
+		},
+		[],
+	)
+	
 	const filteredCurrencies = search ? filterCurrencies(search, currenciesMap) : currencies;
 	return (
 		<>

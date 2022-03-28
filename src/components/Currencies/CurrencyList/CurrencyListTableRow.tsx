@@ -7,7 +7,7 @@ type Props = {
 	handleCurrencySelect: (currencyCode: string) => void;
 }
 
-const CurrencyListTableRow = ({ currency, handleCurrencySelect }: Props) => {
+const CurrencyListTableRow: React.FC<Props> = ({ currency, handleCurrencySelect }: Props) => {
 	let navigate = useNavigate ();
 	const handleRowClick = () => {
 		handleCurrencySelect(currency.code)

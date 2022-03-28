@@ -1,6 +1,10 @@
 import React from 'react'
 
-const FlexContainer = ({children, className = ''}: any) => {
+type Props = {
+	children: React.ReactNode;
+	className: string;
+}
+const FlexContainer:React.FC<Props> = ({children, className = ''}: Props) => {
 	return (
 		<div className={`${className} flex-container`}>{children}</div>
 	)

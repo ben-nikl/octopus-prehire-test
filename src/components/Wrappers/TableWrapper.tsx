@@ -1,6 +1,11 @@
 import React from 'react'
 
-const TableWrapper = ({children, className = ''}: any) => {
+type Props = {
+	children: React.ReactNode;
+	className: string
+}
+
+const TableWrapper: React.FC<Props> = ({children, className = ''}: Props) => {
 	return (
 		<div className={`table-container ${className}`}>{children}</div>
 	)

@@ -1,8 +1,13 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { getChartData } from '../../../utils/currency';
+import { ChartRate } from '../../../types/ChartRate';
 
-const RatesChart = ({rates}: any) => {
-	const data = getChartData(rates);
+
+type Props = {
+	rates: number[]
+}
+const RatesChart: React.FC<Props> = ({rates}: Props) => {
+	const data: ChartRate[] = getChartData(rates);
   return (
 		<ResponsiveContainer width="100%" height="75%">
 			<LineChart

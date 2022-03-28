@@ -5,7 +5,7 @@ type Props = {
 	currencyDetail: CurrencyDetail
 }
 
-const CurrencyDetailTableBody = ({currencyDetail}: Props) => {
+const CurrencyDetailTableBody: React.FC<Props> = ({currencyDetail}: Props) => {
 	const { code = '', country = '', average = 0} = currencyDetail;
 	return (
 		<tbody className='table__body'>
