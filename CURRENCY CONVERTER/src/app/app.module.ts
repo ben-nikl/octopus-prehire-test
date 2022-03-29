@@ -12,6 +12,8 @@ import { SearchCurrencyComponent } from './COMPONENTS/search-currency/search-cur
 import { CurrencyListAndDetailComponent } from './COMPONENTS/currency-list-and-detail/currency-list-and-detail.component';
 import { CurrencyListComponent } from './COMPONENTS/currency-list/currency-list.component';
 import { SortByCountryPipe } from './SERVICES/sort.pipe';
+import { CurrencyComponent } from './COMPONENTS/currency/currency.component';
+import { FilterPipe } from './SERVICES/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { SortByCountryPipe } from './SERVICES/sort.pipe';
     SearchCurrencyComponent,
     CurrencyListAndDetailComponent,
     CurrencyListComponent,
-    SortByCountryPipe
+    SortByCountryPipe,
+    CurrencyComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

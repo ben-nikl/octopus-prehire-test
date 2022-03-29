@@ -6,9 +6,7 @@ import { Currency } from './../../SERVICES/currencies.service';
   selector: "app-currency-list",
   template: `
     <ul>
-      <li *ngFor="let currency of currencies | sortbycountry">
-        {{ currency.country | uppercase }} - ({{ currency.code }})
-      </li>
+      <ng-content></ng-content>
     </ul>
   `,
   styles: [
@@ -30,22 +28,8 @@ import { Currency } from './../../SERVICES/currencies.service';
         gap: 1px;
         background: rgba(255, 255, 255, 0.2);
       }
-      li {
-        display: flex;
-        align-items: center;
-        padding-left: 15px;
-        height: 30px;
-        background-color: rgba(49, 48, 94, 1);
-        color: rgba(255, 255, 255, 0.8);
-        &:hover {
-          color: rgba(255, 255, 255, 1);
-          background-color: rgba(35, 35, 83, 1);
-        }
-      }
     `,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CurrencyListComponent {
-  @Input() currencies!: Currency[];
-}
+export class CurrencyListComponent {}

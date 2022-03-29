@@ -27,9 +27,26 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
     }
 
     h4{
-      font-weight: normal;
       position: relative;
       top: 15px;
+      &::before{
+        content: '';
+        position: absolute;
+        width: 110%;
+        height: 1px;
+        background: white;
+        top: 50%;
+        left: -120%;
+      }
+      &::after{
+        content: '';
+        position: absolute;
+        width: 110%;
+        height: 1px;
+        background: white;
+        top: 50%;
+        right: -120%;
+      }
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush

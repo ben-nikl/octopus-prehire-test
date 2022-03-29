@@ -1,6 +1,7 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CurrenciesService, Currency } from './SERVICES/currencies.service';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: "app-root",
@@ -9,13 +10,19 @@ import { Component, OnInit } from '@angular/core';
       <app-navbar-logo></app-navbar-logo>
       <app-navbar-title></app-navbar-title>
     </app-navbar>
-    <app-search-currency></app-search-currency>
-    <app-currency-list-and-detail>
-      <ng-container *ngIf="(currencies | async) as currencies">
-        <app-currency-list [currencies]="currencies">
-        </app-currency-list>
-      </ng-container>
-      <router-outlet></router-outlet>
+
+    <app-search-currency #search></app-search-currency>
+
+    <app-currency-list-and-detail *ngIf="currencies$ | async as currencies">
+      <app-currency-list>
+        <ng-container *ngFor="let currency of currencies | sortbycountry">
+          <app-currency (click)="showDetail(currency)"
+            [currency]="currency"
+            [filteredCurrency]="(search.searchedCurrency$) | async | filter: currency"
+          >
+          </app-currency>
+        </ng-container>
+      </app-currency-list>
     </app-currency-list-and-detail>
   `,
   styles: [
@@ -35,14 +42,24 @@ import { Component, OnInit } from '@angular/core';
   ],
 })
 export class AppComponent implements OnInit {
-  constructor(private currencyService: CurrenciesService) {}
-  currencies!: Observable<Currency[]>;
+  constructor(
+    private currenciesService: CurrenciesService,
+    private routerService: Router
+  ) { }
+  currencies$!: Observable<Currency[]>;
+
   ngOnInit() {
-    this.currencies = this.currencyService.getCurrencies();
+    this.currencies$ = this.currenciesService.getCurrencies();
+  }
+
+  showDetail(currency: Currency): void {
+    console.log(currency);
     
   }
-    
 }
+    
+    
+    
 
   
   
