@@ -7,6 +7,7 @@ import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
     <li [class.selected]="selected === currency.code">
       {{ currency.code }} -
       {{ currency.country | uppercase }}
+    <ng-content></ng-content>
     </li>
   `,
   styles: [

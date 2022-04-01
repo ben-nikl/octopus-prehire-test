@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
+
 
 
 @Component({
@@ -17,7 +17,7 @@ import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
         height: 600px;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
         position: absolute;
-        left: 300px;
+        left: 400px;
         transition: all 500ms ease;
       }
 
@@ -29,7 +29,7 @@ import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
         flex-direction: column;
         cursor: pointer;
         gap: 1px;
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(35, 35, 83, 1);
       }
     `,
   ],

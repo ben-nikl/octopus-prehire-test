@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, BehaviorSubject, take } from 'rxjs';
+import { map, Observable, BehaviorSubject, take, catchError, Subject, of } from 'rxjs';
 
 export interface Currency {
   code: string;
@@ -23,6 +23,7 @@ export class CurrenciesService {
   constructor(private http: HttpClient) { }
   currencyDetail$ = new BehaviorSubject<CurrencyDetail | null>(null);
   selectedCurrency$ = new BehaviorSubject<string | undefined>('');
+  currencyDetailNotFound$ = new Subject<string>();
 
   getCurrencies(): Observable<Currency[]> {
     return this.http
@@ -32,12 +33,18 @@ export class CurrenciesService {
       );
   }
 
+ 
+
   getCurrencyDetail(currency: Currency): void {
     this.http
-      .get<{rates: number[]}>(`assets/data/${currency.code.toLowerCase()}.json`)
-      .pipe(
-        take(1),
-        map(({ rates }) => rates)).subscribe(
+      .get<{ rates: number[] }>(`assets/data/${currency.code.toLowerCase()}.json`).pipe(
+        map(
+          ({ rates }) => rates),
+        catchError(_ => (
+          this.currencyDetailNotFound$.next(currency.code),
+          of([])
+        ))
+        ).subscribe(
             data => {this.currencyDetail$.next({
             currency: currency,
             rates: data

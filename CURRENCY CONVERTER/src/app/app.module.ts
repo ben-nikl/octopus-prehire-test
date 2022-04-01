@@ -23,6 +23,7 @@ import { ButtonComponent } from './COMPONENTS/button/button.component';
 import { DetailTableComponent } from './COMPONENTS/detail-table/detail-table.component';
 import { AveragePipe } from './SERVICES_AND_PIPES/average.pipe';
 import { LineChartComponent } from './COMPONENTS/line-chart/line-chart.component';
+import { LoaderComponent } from './COMPONENTS/loader/loader.component';
 
 
 
@@ -43,7 +44,8 @@ import { LineChartComponent } from './COMPONENTS/line-chart/line-chart.component
     ButtonComponent,
     DetailTableComponent,
     AveragePipe,
-    LineChartComponent
+    LineChartComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

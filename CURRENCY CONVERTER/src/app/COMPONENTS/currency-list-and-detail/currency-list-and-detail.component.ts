@@ -22,7 +22,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 1000px;
+      width: 1200px;
       height: 100%;
       position: relative;
     }

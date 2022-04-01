@@ -1,7 +1,8 @@
-import { state, style, trigger, transition, animate } from '@angular/animations';
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, timer } from 'rxjs';
+import { list, onShowDetail } from './animations';
 import { CurrenciesService, Currency } from './SERVICES_AND_PIPES/currencies.service';
 
 @Component({
@@ -15,19 +16,21 @@ import { CurrenciesService, Currency } from './SERVICES_AND_PIPES/currencies.ser
     <app-search-currency #search></app-search-currency>
 
     <app-currency-list-and-detail *ngIf="currencies$ | async as currencies">
-      <app-currency-list [@onShowDetail]="onShowDetail()">
+      <app-currency-list [@onShowDetail]="onShowDetail()" @list>
         <ng-container *ngFor="let currency of currencies | sortbycountry">
           <app-currency
             (click)="showDetail(currency)"
             [currency]="currency"
-            [selected]="(currenciesService.selectedCurrency$ | async)"
+            [selected]="currenciesService.selectedCurrency$ | async"
             [filteredCurrency]="
               search.searchedCurrency$ | async | filter: currency
             "
           >
+          <app-loader *ngIf="showLoader === currency.code"></app-loader>
           </app-currency>
         </ng-container>
       </app-currency-list>
+      
       <app-currency-detail>
         <router-outlet></router-outlet>
       </app-currency-detail>
@@ -46,21 +49,9 @@ import { CurrenciesService, Currency } from './SERVICES_AND_PIPES/currencies.ser
           rgba(49, 48, 94, 1)
         );
       }
-
-      
     `,
   ],
-  animations: [
-    trigger("onShowDetail", [
-      state(
-        "currency-detail",
-        style({
-          left: "0px",
-        })
-      ),
-      transition("* => currency-detail", [animate("300ms ease")]),
-    ]),
-  ],
+  animations: [list, onShowDetail],
 })
 export class AppComponent implements OnInit {
   constructor(
@@ -68,26 +59,35 @@ export class AppComponent implements OnInit {
     private routerService: Router
   ) {}
   currencies$!: Observable<Currency[]>;
+  showLoader!: string;
 
   ngOnInit() {
     this.currencies$ = this.currenciesService.getCurrencies();
   }
+
+   
+  _showDetail(currency: Currency): void {
+    this.showLoader = '';
+      this.currenciesService.selectedCurrency$.next(currency.code);
+    this.currenciesService.getCurrencyDetail(currency);
     
+      let country = currency.country.split(" ").join("-");
+      this.routerService.navigate([
+        "currency-detail",
+        `${currency.code}-${country}`,
+      ]);
+  }
 
   showDetail(currency: Currency): void {
-    this.currenciesService.selectedCurrency$.next(currency.code);
-    this.currenciesService.getCurrencyDetail(currency);
-    let country = currency.country.split(" ").join("-");
-    this.routerService.navigate([
-      "currency-detail",
-      `${currency.code}-${country}`,
-    ]);
+    this.showLoader = currency.code;
+    timer(2000).subscribe(_ => this._showDetail(currency))
   }
+
+    
 
   onShowDetail(): string {
     return this.routerService.url.split("/")[1];
   }
-    
 }
     
     
