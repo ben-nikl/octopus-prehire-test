@@ -22,8 +22,9 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
+      width: 1000px;
       height: 100%;
+      position: relative;
     }
 
     h4{

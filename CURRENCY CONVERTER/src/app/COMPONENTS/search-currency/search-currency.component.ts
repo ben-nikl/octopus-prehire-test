@@ -54,10 +54,7 @@ export class SearchCurrencyComponent implements OnInit, OnDestroy {
 
   private extractText(text: string): string {
     return (
-      text.replace(/[^a-zA-Z ]/g, "")
-      .replace(/\s+/g, " ")
-      .trim()
+      text.replace(/\s+/g, " ").trim()
     );
-    
   }
 }

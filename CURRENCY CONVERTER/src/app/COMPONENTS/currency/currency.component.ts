@@ -1,10 +1,10 @@
-import { Component, ChangeDetectionStrategy, Input, HostBinding } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, HostBinding, OnInit } from '@angular/core';
 import { Currency } from './../../SERVICES/currencies.service';
 
 @Component({
   selector: "app-currency",
   template: `
-    <li>
+    <li [class.selected]="selected === currency.code">
       {{ currency.code }} -
       {{ currency.country | uppercase }}
     </li>
@@ -17,15 +17,14 @@ import { Currency } from './../../SERVICES/currencies.service';
         transition: all 100ms ease;
         box-sizing: border-box;
         background-color: rgba(49, 48, 94, 1);
+        overflow: hidden;
         &.searched {
           color: rgba(255, 255, 255, 1);
           background-color: rgba(35, 35, 83, 1);
-          outline: 1px solid rgba(255, 255, 255, 0.7);
         }
         &:hover {
           color: rgba(255, 255, 255, 1);
           background-color: rgba(35, 35, 83, 1);
-          outline: 1px solid rgba(255, 255, 255, 0.7);
         }
       }
       li {
@@ -35,6 +34,19 @@ import { Currency } from './../../SERVICES/currencies.service';
         padding-left: 15px;
         height: 28px;
         color: inherit;
+        position: relative;
+      }
+      li.selected {
+        color: rgba(255, 255, 255, 1);
+        background-color: rgba(35, 35, 83, 1);
+        &::after {
+          content: "";
+          position: absolute;
+          width: 4px;
+          height: 100%;
+          left: 0;
+          background: white;
+        }
       }
     `,
   ],
@@ -42,9 +54,15 @@ import { Currency } from './../../SERVICES/currencies.service';
 })
 export class CurrencyComponent {
   @Input() currency!: Currency;
-  @HostBinding("class.searched")
+  @Input() selected: string | undefined | null;
   @Input() filteredCurrency!: boolean;
+
+  @HostBinding("class.searched")
+  get searched(): boolean {
+    return this.filteredCurrency;
+  }
 }
+
 
   
 

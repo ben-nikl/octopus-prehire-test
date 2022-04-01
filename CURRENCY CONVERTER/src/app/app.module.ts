@@ -14,6 +14,11 @@ import { CurrencyListComponent } from './COMPONENTS/currency-list/currency-list.
 import { SortByCountryPipe } from './SERVICES/sort.pipe';
 import { CurrencyComponent } from './COMPONENTS/currency/currency.component';
 import { FilterPipe } from './SERVICES/filter.pipe';
+import { CurrencyDetailComponent } from './COMPONENTS/currency-detail/currency-detail.component';
+import { DetailComponent } from './COMPONENTS/detail/detail.component';
+import { ButtonComponent } from './COMPONENTS/button/button.component';
+import { DetailTableComponent } from './COMPONENTS/detail-table/detail-table.component';
+import { AveragePipe } from './SERVICES/average.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,12 @@ import { FilterPipe } from './SERVICES/filter.pipe';
     CurrencyListComponent,
     SortByCountryPipe,
     CurrencyComponent,
-    FilterPipe
+    FilterPipe,
+    CurrencyDetailComponent,
+    DetailComponent,
+    ButtonComponent,
+    DetailTableComponent,
+    AveragePipe
   ],
   imports: [
     BrowserModule,

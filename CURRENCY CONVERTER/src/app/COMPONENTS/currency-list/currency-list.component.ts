@@ -16,6 +16,9 @@ import { Currency } from './../../SERVICES/currencies.service';
         width: 400px;
         height: 600px;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+        position: absolute;
+        left: 300px;
+        transition: all 500ms ease;
       }
 
       ul {

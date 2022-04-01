@@ -8,7 +8,7 @@ export class FilterPipe implements PipeTransform {
 
   transform(searchedCurrency: Currency | null, currency: Currency): boolean {
     return (
-      (this.normalize(searchedCurrency?.code.toLowerCase() || '') === currency.code.toLowerCase()) && 
+      (this.normalize(searchedCurrency?.code || '') === currency.code.toLowerCase()) && 
       (this.normalize(searchedCurrency?.country || '') === this.normalize(currency.country))
     )
   }
