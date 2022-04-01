@@ -1,5 +1,6 @@
-import { animate, style, transition, trigger } from '@angular/animations';
+
 import { Component, OnInit, ChangeDetectionStrategy, HostBinding } from '@angular/core';
+import { button } from './../../animations';
 
 @Component({
   selector: 'app-button',
@@ -18,18 +19,7 @@ import { Component, OnInit, ChangeDetectionStrategy, HostBinding } from '@angula
          cursor: pointer;
        }
      `],
-  animations: [
-    trigger('button', [
-      transition(':enter', [
-        style({
-          opacity: 0,
-          transform: 'translateY(100%)'
-        }),
-
-        animate('300ms ease')
-      ])
-    ])
-  ],
+  animations: [button],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent {
