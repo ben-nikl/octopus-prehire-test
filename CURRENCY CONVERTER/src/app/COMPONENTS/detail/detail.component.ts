@@ -1,6 +1,6 @@
 
 import { trigger, transition, style, animate, animateChild, query } from '@angular/animations';
-import { CurrenciesService } from './../../SERVICES/currencies.service';
+import { CurrenciesService } from '../../SERVICES_AND_PIPES/currencies.service';
 import { Component, ChangeDetectionStrategy, OnDestroy, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
       [currencyDetail]="currencyDetail"
     >
     </app-detail-table>
+    <app-line-chart></app-line-chart>
     <app-button (click)="closeDetail()">CLOSE</app-button>
   `,
   styles: [
@@ -22,6 +23,7 @@ import { Router } from '@angular/router';
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: 10px;
         width: 600px;
         height: 600px;
         overflow: hidden;

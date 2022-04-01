@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgChartsModule } from 'ng2-charts';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './COMPONENTS/navbar/navbar.component';
@@ -11,14 +14,17 @@ import { NavbarTitleComponent } from './COMPONENTS/navbar-title/navbar-title.com
 import { SearchCurrencyComponent } from './COMPONENTS/search-currency/search-currency.component';
 import { CurrencyListAndDetailComponent } from './COMPONENTS/currency-list-and-detail/currency-list-and-detail.component';
 import { CurrencyListComponent } from './COMPONENTS/currency-list/currency-list.component';
-import { SortByCountryPipe } from './SERVICES/sort.pipe';
+import { SortByCountryPipe } from './SERVICES_AND_PIPES/sort.pipe';
 import { CurrencyComponent } from './COMPONENTS/currency/currency.component';
-import { FilterPipe } from './SERVICES/filter.pipe';
+import { FilterPipe } from './SERVICES_AND_PIPES/filter.pipe';
 import { CurrencyDetailComponent } from './COMPONENTS/currency-detail/currency-detail.component';
 import { DetailComponent } from './COMPONENTS/detail/detail.component';
 import { ButtonComponent } from './COMPONENTS/button/button.component';
 import { DetailTableComponent } from './COMPONENTS/detail-table/detail-table.component';
-import { AveragePipe } from './SERVICES/average.pipe';
+import { AveragePipe } from './SERVICES_AND_PIPES/average.pipe';
+import { LineChartComponent } from './COMPONENTS/line-chart/line-chart.component';
+
+
 
 @NgModule({
   declarations: [
@@ -36,13 +42,15 @@ import { AveragePipe } from './SERVICES/average.pipe';
     DetailComponent,
     ButtonComponent,
     DetailTableComponent,
-    AveragePipe
+    AveragePipe,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgChartsModule,
     AppRoutingModule,
   ],
   bootstrap: [AppComponent],

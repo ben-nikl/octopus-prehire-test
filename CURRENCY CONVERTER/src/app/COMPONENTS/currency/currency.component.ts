@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, HostBinding, OnInit } from '@angular/core';
-import { Currency } from './../../SERVICES/currencies.service';
+import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
 
 @Component({
   selector: "app-currency",

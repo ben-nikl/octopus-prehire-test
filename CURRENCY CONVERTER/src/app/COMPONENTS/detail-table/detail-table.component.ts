@@ -1,4 +1,4 @@
-import { CurrencyDetail } from './../../SERVICES/currencies.service';
+import { CurrencyDetail } from '../../SERVICES_AND_PIPES/currencies.service';
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({

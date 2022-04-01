@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { Currency } from './../../SERVICES/currencies.service';
+import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
 
 @Component({
   selector: "app-search-currency",

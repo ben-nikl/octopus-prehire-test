@@ -2,7 +2,7 @@ import { state, style, trigger, transition, animate } from '@angular/animations'
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CurrenciesService, Currency } from './SERVICES/currencies.service';
+import { CurrenciesService, Currency } from './SERVICES_AND_PIPES/currencies.service';
 
 @Component({
   selector: "app-root",
