@@ -11,15 +11,18 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
     `
       :host {
         display: flex;
-        height: 100px;
+        height: 180px;
+        width: 100%;
         justify-content: center;
         background-color: rgba(35, 35, 83, 1);
       }
       nav {
         width: 90%;
+        height: 50%;
         display: flex;
         justify-content: space-between;
         align-items: center;
+
       }
     `,
   ],

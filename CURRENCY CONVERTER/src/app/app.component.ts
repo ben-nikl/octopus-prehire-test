@@ -12,8 +12,8 @@ import { CurrenciesService, Currency } from './SERVICES_AND_PIPES/currencies.ser
       <app-navbar-logo></app-navbar-logo>
       <app-navbar-title></app-navbar-title>
     </app-navbar>
-
     <app-search-currency #search></app-search-currency>
+
 
     <app-currency-list-and-detail *ngIf="currencies$ | async as currencies">
       <app-currency-list [@onShowDetail]="onShowDetail()" @list>
@@ -41,6 +41,8 @@ import { CurrenciesService, Currency } from './SERVICES_AND_PIPES/currencies.ser
       :host {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
         width: 100vw;
         height: 100vh;
         color: white;

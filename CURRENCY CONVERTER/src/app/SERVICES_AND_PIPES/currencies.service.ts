@@ -23,7 +23,7 @@ export class CurrenciesService {
   constructor(private http: HttpClient) { }
   currencyDetail$ = new BehaviorSubject<CurrencyDetail | null>(null);
   selectedCurrency$ = new BehaviorSubject<string | undefined>('');
-  currencyDetailNotFound$ = new Subject<string>();
+ 
 
   getCurrencies(): Observable<Currency[]> {
     return this.http
@@ -41,7 +41,6 @@ export class CurrenciesService {
         map(
           ({ rates }) => rates),
         catchError(_ => (
-          this.currencyDetailNotFound$.next(currency.code),
           of([])
         ))
         ).subscribe(

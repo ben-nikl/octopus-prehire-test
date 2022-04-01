@@ -25,6 +25,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
       width: 1200px;
       height: 100%;
       position: relative;
+
     }
 
     h4{

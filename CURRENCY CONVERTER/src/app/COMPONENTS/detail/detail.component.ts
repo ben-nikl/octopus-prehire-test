@@ -1,6 +1,7 @@
 
-import { Component, ChangeDetectionStrategy, OnDestroy, HostBinding, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, ChangeDetectionStrategy,  HostBinding } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 import { CurrenciesService } from '../../SERVICES_AND_PIPES/currencies.service';
 import { detail } from './../../animations';
@@ -15,6 +16,10 @@ import { detail } from './../../animations';
           
       <app-line-chart [rates]="currencyDetail.rates"></app-line-chart>
       <app-button (click)="closeDetail()">CLOSE</app-button>
+
+      <app-detail-not-found 
+        *ngIf="!(currencyDetail.rates.length)">
+      </app-detail-not-found>
 
     </ng-container>
 
@@ -44,10 +49,9 @@ import { detail } from './../../animations';
   animations: [detail ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DetailComponent implements OnInit, OnDestroy {
+export class DetailComponent {
   constructor(
     private router: Router,
-    private activeRoute: ActivatedRoute,
     public currencyService: CurrenciesService
   ) {}
 
@@ -61,9 +65,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.currencyService.selectedCurrency$.next("");
   }
 
-  ngOnInit() {
-     this.activeRoute.params.subscribe(console.log)
-  }
+  
 }
   
 

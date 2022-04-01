@@ -12,8 +12,13 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
       <li>AVERAGE RATE TO CZK LAST 12 MONTHS</li>
       <li>{{ currencyDetail.currency.code }}</li>
       <li>{{ currencyDetail.currency.country }}</li>
-      <li>{{ currencyDetail.rates[currencyDetail.rates.length -1] | number}}</li>
-      <li>{{ currencyDetail.rates | average | number}}</li>
+      <li>
+        {{ currencyDetail.rates[currencyDetail.rates.length - 1] | number }}
+      </li>
+      <li>{{ (currencyDetail.rates.length) && 
+             ( currencyDetail.rates | average | number )
+        }}
+      </li>
     </ul>
   `,
   styles: [
@@ -52,6 +57,4 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 })
 export class DetailTableComponent {
   @Input() currencyDetail!: CurrencyDetail;
-
-
 }

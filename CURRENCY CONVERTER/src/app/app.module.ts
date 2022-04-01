@@ -24,6 +24,7 @@ import { DetailTableComponent } from './COMPONENTS/detail-table/detail-table.com
 import { AveragePipe } from './SERVICES_AND_PIPES/average.pipe';
 import { LineChartComponent } from './COMPONENTS/line-chart/line-chart.component';
 import { LoaderComponent } from './COMPONENTS/loader/loader.component';
+import { DetailNotFoundComponent } from './COMPONENTS/detail-not-found/detail-not-found.component';
 
 
 
@@ -45,7 +46,8 @@ import { LoaderComponent } from './COMPONENTS/loader/loader.component';
     DetailTableComponent,
     AveragePipe,
     LineChartComponent,
-    LoaderComponent
+    LoaderComponent,
+    DetailNotFoundComponent
   ],
   imports: [
     BrowserModule,
