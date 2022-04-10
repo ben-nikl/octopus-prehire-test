@@ -1,5 +1,9 @@
+import { CurrenciesService } from './../../SERVICES_AND_PIPES/currencies.service';
 import { Component, ChangeDetectionStrategy, Input, HostBinding, OnInit } from '@angular/core';
+
+
 import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-currency",
@@ -7,7 +11,7 @@ import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
     <li [class.selected]="selected === currency.code">
       {{ currency.code }} -
       {{ currency.country | uppercase }}
-    <ng-content></ng-content>
+      <ng-content></ng-content>
     </li>
   `,
   styles: [
@@ -22,6 +26,7 @@ import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
         &.searched {
           color: rgba(255, 255, 255, 1);
           background-color: rgba(35, 35, 83, 1);
+          font-weight: bold;
         }
         &:hover {
           color: rgba(255, 255, 255, 1);
@@ -55,14 +60,22 @@ import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
 })
 export class CurrencyComponent {
   @Input() currency!: Currency;
-  @Input() selected: string | undefined | null;
-  @Input() filteredCurrency!: boolean;
+  @Input() selected!: string;
+  @Input() filteredCurrency!: string;
 
   @HostBinding("class.searched")
   get searched(): boolean {
-    return this.filteredCurrency;
+    return this.filteredCurrency === 
+    this.currency.code
   }
+
+  
+  
 }
+
+  
+
+  
 
 
   

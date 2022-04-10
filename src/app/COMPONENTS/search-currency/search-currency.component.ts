@@ -1,7 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy} from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
+import { Component, ChangeDetectionStrategy} from '@angular/core';
+import {  FormControl } from '@angular/forms';
 
 @Component({
   selector: "app-search-currency",
@@ -9,6 +7,7 @@ import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
     <div>
       <input [formControl]="searchedCurrency" placeholder="Search Currency" />
       <label [class.moveUp]="searchedCurrency.value">Search Currency</label>
+      <ng-content></ng-content>
     </div>
   `,
   styles: [
@@ -22,6 +21,7 @@ import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
         background-color: rgba(35, 35, 83, 1);
         position: absolute;
         top: 100px;
+        z-index: 200;
       }
 
       div {
@@ -37,7 +37,6 @@ import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
         color: black;
         font-size: 12px;
         transition: all 200ms ease;
-        font-weight: bold;
         color: gray;
         &.moveUp {
           color: red;
@@ -66,28 +65,10 @@ import { Currency } from '../../SERVICES_AND_PIPES/currencies.service';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchCurrencyComponent implements OnInit, OnDestroy {
-  private sub!: Subscription;
+export class SearchCurrencyComponent {
   searchedCurrency = new FormControl("");
-  searchedCurrency$ = new BehaviorSubject<Currency | null>(null);
-
-  ngOnInit() {
-    this.sub = this.searchedCurrency.valueChanges.subscribe(
-      (searched: string) => {
-        let filteredCurrency = this.extractText(searched).split(" ");
-        this.searchedCurrency$.next({
-          code: filteredCurrency[0].slice(0, 3),
-          country: filteredCurrency.slice(1).join(" "),
-        });
-      }
-    );
-  }
-
-  ngOnDestroy() {
-    this.sub?.unsubscribe();
-  }
-
-  private extractText(text: string): string {
-    return text.replace(/\s+/g, " ").trim();
-  }
 }
+  
+
+  
+  

@@ -1,28 +1,27 @@
+import { CurrencyDetail } from './../../SERVICES_AND_PIPES/currencies.service';
 
-import { Component, ChangeDetectionStrategy,  HostBinding } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ChangeDetectionStrategy,  HostBinding, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 import { CurrenciesService } from '../../SERVICES_AND_PIPES/currencies.service';
 import { detail } from './../../animations';
+import { Observable, Subject, switchMap } from 'rxjs';
 
 
 @Component({
   selector: "app-detail",
   template: `
-    <ng-container *ngIf="currencyService.currencyDetail$ | async as currencyDetail">
-
+    <ng-container *ngIf="currencyDetail$ | async as currencyDetail">
       <app-detail-table [currencyDetail]="currencyDetail"> </app-detail-table>
-          
+
       <app-line-chart [rates]="currencyDetail.rates"></app-line-chart>
-      <app-button (click)="closeDetail()">CLOSE</app-button>
+      <app-button [routerLink]="'/'">CLOSE</app-button>
+      
 
-      <app-detail-not-found 
-        *ngIf="!(currencyDetail.rates.length)">
+      <app-detail-not-found *ngIf="!(currencyDetail.rates.length)">
       </app-detail-not-found>
-
     </ng-container>
-
   `,
   styles: [
     `
@@ -46,26 +45,27 @@ import { detail } from './../../animations';
       }
     `,
   ],
-  animations: [detail ],
+  animations: [detail],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DetailComponent {
+export class DetailComponent implements OnInit {
   constructor(
-    private router: Router,
-    public currencyService: CurrenciesService
+    public currencyService: CurrenciesService,
+    public activeRoute: ActivatedRoute
   ) {}
+  currencyDetail$!: Observable<CurrencyDetail>;
 
   @HostBinding("@detail")
-  ngOnDestroy() {
-    this.currencyService.selectedCurrency$.next("");
-  }
-
-  closeDetail(): void {
-    this.router.navigate(["/"]);
-    this.currencyService.selectedCurrency$.next("");
-  }
-
   
+
+  ngOnInit() {
+    this.currencyDetail$ = this.activeRoute.params.pipe(
+      switchMap((params) =>
+        this.currencyService.getCurrencyDetail(params["currency"])
+      )
+    );
+      
+  }
 }
   
 

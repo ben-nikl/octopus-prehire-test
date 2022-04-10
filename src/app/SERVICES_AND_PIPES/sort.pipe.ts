@@ -6,8 +6,11 @@ import { Currency } from './currencies.service';
 })
 export class SortByCountryPipe implements PipeTransform {
   transform(value: Currency[]): Currency[] {
-    return value.sort(function (a, b) {
-      return a.country.localeCompare(b.country);
-    });;
+    if (value?.length) {
+      return value.sort(function (a, b) {
+        return a.country.localeCompare(b.country);
+      });
+    }
+    return []
   }
 }

@@ -6,20 +6,30 @@ import { Currency } from './currencies.service';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(searchedCurrency: Currency | null, currency: Currency): boolean {
-    return (
-      (this.normalize(searchedCurrency?.code || '') === currency.code.toLowerCase()) && 
-      (this.normalize(searchedCurrency?.country || '') === this.normalize(currency.country))
-    )
-  }
+  transform(searchCurrency: string, { code, country }: Currency): boolean {
+  [code, country, searchCurrency] = this._normalize(code, country, searchCurrency);
 
-  private normalize(arg: string): string {
     return (
+      searchCurrency === (`${code} ${country}`) || 
+      searchCurrency === (`${country} ${code}`) || 
+      searchCurrency === code ||
+      searchCurrency === country
+    );
+      
+  }
+    
+  private _normalize(...args: string[]): string[] {
+    return args.map(arg => (
       arg.normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase()
+        .trim()
+        )
     );
+        
   }
+    
+
 
     
 

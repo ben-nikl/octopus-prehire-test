@@ -1,7 +1,7 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, timer } from 'rxjs';
+import { timer } from 'rxjs';
 import { list, onShowDetail } from './animations';
 import { CurrenciesService, Currency } from './SERVICES_AND_PIPES/currencies.service';
 
@@ -12,28 +12,35 @@ import { CurrenciesService, Currency } from './SERVICES_AND_PIPES/currencies.ser
       <app-navbar-logo></app-navbar-logo>
       <app-navbar-title></app-navbar-title>
     </app-navbar>
-    <app-search-currency #search></app-search-currency>
 
+    <app-search-currency #search>
+      <app-drop-down-search-currency
+        #filtered
+        [currencies]="(currencies$ | async)!"
+        [search]="search.searchedCurrency.value"
+        (detail)="showDetail($event)"
+      ></app-drop-down-search-currency>
+    </app-search-currency>
 
     <app-currency-list-and-detail *ngIf="currencies$ | async as currencies">
-      <app-currency-list [@onShowDetail]="onShowDetail()" @list>
+
+      <app-currency-list [@onShowDetail]="onShowDetail" @list>
         <ng-container *ngFor="let currency of currencies | sortbycountry">
           <app-currency
             (click)="showDetail(currency)"
             [currency]="currency"
-            [selected]="currenciesService.selectedCurrency$ | async"
-            [filteredCurrency]="
-              search.searchedCurrency$ | async | filter: currency
-            "
-          >
-          <app-loader *ngIf="showLoader === currency.code"></app-loader>
+            [selected]="selected"
+            [filteredCurrency]="(search.searchedCurrency.value && filtered.code)"
+            >
+            <app-loader *ngIf="showLoader === currency.code"></app-loader>
           </app-currency>
         </ng-container>
       </app-currency-list>
-      
+
       <app-currency-detail>
         <router-outlet></router-outlet>
       </app-currency-detail>
+
     </app-currency-list-and-detail>
   `,
   styles: [
@@ -55,40 +62,37 @@ import { CurrenciesService, Currency } from './SERVICES_AND_PIPES/currencies.ser
   ],
   animations: [list, onShowDetail],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   constructor(
     public currenciesService: CurrenciesService,
     private routerService: Router
   ) {}
-  currencies$!: Observable<Currency[]>;
+
+  currencies$ = this.currenciesService.getCurrencies();
   showLoader!: string;
-
-  ngOnInit() {
-    this.currencies$ = this.currenciesService.getCurrencies();
-  }
-
-   
-  _showDetail(currency: Currency): void {
-    this.showLoader = '';
-      this.currenciesService.selectedCurrency$.next(currency.code);
-    this.currenciesService.getCurrencyDetail(currency);
-    
-      let country = currency.country.split(" ").join("-");
-      this.routerService.navigate([
-        "currency-detail",
-        `${currency.code}-${country}`,
-      ]);
-  }
 
   showDetail(currency: Currency): void {
     this.showLoader = currency.code;
-    timer(2000).subscribe(_ => this._showDetail(currency))
+    timer(2000).subscribe(
+      (_) => (
+        (this.showLoader = ""),
+        this.routerService.navigate([
+          "currency-detail",
+          `${currency.code} ${currency.country}`,
+        ])
+      )
+    );
   }
 
-    
-
-  onShowDetail(): string {
+  get onShowDetail(): string {
+    this.selected;
     return this.routerService.url.split("/")[1];
+  }
+
+  get selected(): string {
+    return this.routerService.url.length > 1
+      ? this.routerService.url.split("/")[2].slice(0, 3)
+      : "";
   }
 }
     

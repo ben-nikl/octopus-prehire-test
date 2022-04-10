@@ -77,3 +77,53 @@ export const button = [
     ]),
   ]),
 ];
+
+
+export const dropDown = trigger("dropDown", [
+  transition(":enter", [
+    group([
+      query(":self", [
+        style({
+          opacity: 0,
+          height: "0px",
+        }),
+        animate(
+          "300ms ease",
+          style({
+            opacity: 1,
+            height: "*",
+          })
+        ),
+      ]),
+
+      query(
+        "li",
+        [
+          style({
+            opacity: 0,
+            transform: "translateY(10px)",
+          }),
+          stagger("10ms", [
+            animate(
+              "200ms 200ms ease",
+              style({
+                opacity: 1,
+                transform: "translateY(0px)",
+              })
+            ),
+          ]),
+        ],
+        { optional: true }
+      ),
+    ]),
+  ]),
+
+  transition(":leave", [
+    animate(
+      "300ms ease",
+      style({
+        opacity: 0,
+      })
+    ),
+  ]),
+]);

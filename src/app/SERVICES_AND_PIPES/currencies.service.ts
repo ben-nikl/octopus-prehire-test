@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, BehaviorSubject, take, catchError, Subject, of } from 'rxjs';
+import { map, Observable, catchError, of } from 'rxjs';
 
 export interface Currency {
   code: string;
@@ -21,8 +21,7 @@ export interface CurrencyDetail {
 export class CurrenciesService {
 
   constructor(private http: HttpClient) { }
-  currencyDetail$ = new BehaviorSubject<CurrencyDetail | null>(null);
-  selectedCurrency$ = new BehaviorSubject<string | undefined>('');
+  
  
 
   getCurrencies(): Observable<Currency[]> {
@@ -35,22 +34,20 @@ export class CurrenciesService {
 
  
 
-  getCurrencyDetail(currency: Currency): void {
-    this.http
-      .get<{ rates: number[] }>(`assets/data/${currency.code.toLowerCase()}.json`).pipe(
-        map(
-          ({ rates }) => rates),
-        catchError(_ => (
-          of([])
-        ))
-        ).subscribe(
-            data => {this.currencyDetail$.next({
-            currency: currency,
-            rates: data
-        })
-        
-      });
+  getCurrencyDetail(currency: string): Observable<CurrencyDetail> {
+    let code = currency.split(' ', 1).join('');
+    let country = currency.split(' ').slice(1).join(' ');
+    return this.http
+      .get<{ rates: number[] }>(`assets/data/${code.toLowerCase()}.json`)
+      .pipe(
+        map(data => ({
+            currency: { code, country },
+            rates: data.rates
+        })),
+        catchError(() => of({ currency: { code, country }, rates: []}))
+      )
   }
+        
 
   
   
