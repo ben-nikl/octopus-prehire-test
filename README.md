@@ -1,3 +1,9 @@
+<img width="1536" alt="Screenshot 2022-04-11 at 0 16 02" src="https://user-images.githubusercontent.com/58525175/162642149-0996578f-f3f0-4f3a-bb63-b7fa262ca5b6.png">
+
+<img width="1534" alt="Screenshot 2022-04-11 at 0 15 36" src="https://user-images.githubusercontent.com/58525175/162642148-7fb1b803-148b-4639-b0e4-ec79748a5fd6.png">
+
+<img width="1532" alt="Screenshot 2022-04-11 at 0 16 32" src="https://user-images.githubusercontent.com/58525175/162642150-a2c1d602-fffc-43f4-a64b-54ca45f8f4c7.png">
+
 # octopus-prehire-test
 
 ## Test definition
